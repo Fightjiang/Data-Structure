@@ -8,14 +8,14 @@ typedef long long ll ;
 	start 为起始位置，要求 start>=1 ,因为 ai[0] 要作为“哨兵”使用。
 	end 为结束位置
 
-	代码思路：看后面的数字有没有比前面的大，比前面的大则需要插入交换，从后往前，依次比较，依次往后移一位，直到不满足
+	代码思路：看后面的数字有没有比前面的小，比前面的小则需要插入交换，从后往前，依次比较，依次往后移一位，直到不满足
 
 */
 void InsertSort(int ai[] , int start , int end)
 {
 	int i , j ; 
 	for(i=start; i<=end; i++){
-		if(ai[i]<ai[i-1]){
+		if(ai[i] < ai[i-1]){
 			ai[0] = ai[i] ; 
 			ai[i] = ai[i-1] ; 
 			for(j=i-2; ai[j]>ai[0]; j--){
@@ -195,7 +195,7 @@ int cnt = 0 ;
 void Merge(int ai[], int L, int mild, int R)
 {
 	int *temp = new int[R-L+1] ; 
-	int k = L, i = L, j = mild + 1 ; 
+	int k = 0, i = L, j = mild + 1 ; 
 	while(i<=mild && j <= R){
 		if(ai[i]<=ai[j]) temp[k++] = ai[i++];
 		else{
@@ -210,8 +210,8 @@ void Merge(int ai[], int L, int mild, int R)
 	while(i<=mild) temp[k++] = ai[i++] ; 
 	while(j<=R) temp[k++] = ai[j++];
 	
-	for(int i=L;i<k;i++){
-		ai[i] = temp[i] ; 	
+	for(i = L , k = 0 ; i <= R ; i++){
+		ai[i] = temp[k++] ; 	
 	}
 }
 // 归并排序，将 ai 数组前半部分后半部分分成最小单元，然后在合并
@@ -274,7 +274,7 @@ int main()
 	 * 插入排序
 	 * InsertSort(ai,2,8) ; // 直接插入排序
 	 * BInsertSort(ai,2,10) ; // 折半插入排序
-	 * ShellSort(ai,1,10); // 希尔排序
+	 * ShellSort(ai,1,10	); // 希尔排序
 	*/
 
 	/** 
